@@ -6,6 +6,34 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <form action="" method="POST">
+        {%csrf_token%}
+        
+        <table border="1">
+            <tr>
+                <th>USERNAME</th>
+                <td><label><input type="text" name="username"></label></td>
+            </tr>
+            <tr>
+                <th>PASSWORD</th>
+                <td><label><input type="text" name="password"></label></td>
+            </tr>
+            <tr>
+                <td>
+                <input type="submit" value="login">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <a href="advocates_register">Advocates Register</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <a href="public_register">Public Users Register</a>
+                </td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>

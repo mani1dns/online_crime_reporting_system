@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>Crime Title</th>
+            <th>Crime Description</th>
+            <th>Date Time Occured</th>
+            <th>Date Time Reported</th>
+            <th>Crime Status</th>
+            <th>Place</th>
+            <th>District</th>
+            <th>Image</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.crime_title}}</td>
+            <td>{{i.crime_description}}</td>
+            <td>{{i.date_time_occured}}</td>
+            <td>{{i.date_time_reported}}</td>
+            <td>{{i.crime_status}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.district}}</td>
+            <td>{{i.image}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

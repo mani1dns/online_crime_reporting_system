@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Qualification</th>
+            <th>Gender</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>House Name</th>
+            <th>Place</th>
+            <th>Status</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.first_name}}</td>
+            <td>{{i.last_name}}</td>
+            <td>{{i.qualification}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.house_name}}</td>
+            <td>{{i.place}}</td>
+            {% if i.login_id.type == 'pending' %}
+            <td><a href="updates/{{i.login_id_id}}">Accept</a>
+                <a href="delete/{{i.login_id_id}}">Reject</a></td>
+            {%else%}
+            <td>{{i.status}}</td>
+            {%endif%}
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

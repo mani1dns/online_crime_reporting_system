@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if ab %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="2">
+            <tr>
+                <th>crime types</th>
+                <td><input type="text" name="crime_types" value="{{ab.crime_type_name}}"></td>
+            </tr>
+            <tr>
+                <th>minimum_penalty</th>
+                <td><input type="text" name="minimum_penalties" value="{{ab.minimum_penalty}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="update" value="Update"></td>
+            </tr>
+        </table>
+    </form> 
+    {% else %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <table border="2">
+            <tr>
+                <th>crime types</th>
+                <td><input type="text" name="crime_types"></td>
+            </tr>
+            <tr>
+                <th>minimum_penalty</th>
+                <td><input type="text" name="minimum_penalty"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="submit"></td>
+            </tr>
+        </table>
+        {% endif %}
+    </form>  <br><br>
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>Crimes</th>
+            <th>Minimum Penalty</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.crime_type_name}}</td>
+            <td>{{i.minimum_penalty}}</td>
+            <td><a href="update_crime_type/{{i.crime_type_id}}">Update</a></td>
+            <td><a href="delete_crime_type/{{i.crime_type_id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body> 
+</html>

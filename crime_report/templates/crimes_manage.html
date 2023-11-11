@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%if qz%}
+
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th>Crime Title</th>
+                <td><input type="text" name="title" value="{{qz.crime_title}}"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="description" value="{{qz.crime_description}}"></td>
+            </tr>
+            <tr>
+                <th>Occured Date and Time</th>
+                <td><input type="text" name="occ_time" value="{{qz.date_time_occurred}}"></td>
+            </tr>
+            <tr>
+                <th>Reported Date and Time</th>
+                <td><input type="text" name="rep_time" value="{{qz.date_time_reported}}"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><input type="text" name="status" value="{{qz.crime_status}}"></td>
+            </tr>
+            <tr>
+                <th>Choose Station </th>
+                <td><select name="station">
+                    {% for i in qa %}
+                    <option value="{{i.station_id}}">{{i.station_name}}</option>
+                    {%endfor%}
+                </select></td>
+            </tr>
+            <tr>
+                <th>Choose Crimes types</th>
+                <td><select name="choose_crime">
+                    {% for i in ab %}
+                    <option value="{{i.crime_type_id}}">{{i.crime_type_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place" value="{{qz.place}}"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" name="district" value="{{qz.district}}"></td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    <input type="file" name="img" required>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="update" value="Update"></td>
+            </tr>
+        </table>
+        </form>
+    {%else%}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th>Crime Title</th>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <th>Occured Date and Time</th>
+                <td><input type="text" name="occ_time"></td>
+            </tr>
+            <tr>
+                <th>Reported Date and Time</th>
+                <td><input type="text" name="rep_time"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><input type="text" name="status"></td>
+            </tr>
+            <tr>
+                <th>Choose Station </th>
+                <td><select name="station">
+                    {% for i in qa %}
+                    <option value="{{i.station_id}}">{{i.station_name}}</option>
+                    {%endfor%}
+                </select></td>
+            </tr>
+            <tr>
+                <th>Choose Crimes types</th>
+                <td><select name="choose_crime">
+                    {% for i in ab %}
+                    <option value="{{i.crime_type_id}}">{{i.crime_type_name}}</option>
+                    {% endfor %}
+                </select></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" name="district"></td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>
+                    <input type="file" name="img" required>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="submit"></td>
+            </tr>
+        </table>
+        {%endif%}
+    </form> <br><br><br>
+    <table border="2">
+        
+        <tr>
+            <th>#</th>
+            <th>Crime Title</th>
+            <th>Crime Description</th>
+            <th>Occured Date and Time</th>
+            <th> Reported Date and Time</th>
+            <th>Station</th>
+            <th>Crime Type</th>
+            <th>Crime Status</th>
+            <th>Place</th>
+            <th>District</th>
+            <th>Image</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.crime_title}}</td>
+            <td>{{i.crime_description}}</td>
+            <td>{{i.date_time_occurred}}</td>
+            <td>{{i.date_time_reported}}</td>
+            <td>{{i.station_id.station_name}}</td>
+            <td>{{i.crime_type_id.crime_type_name}}</td>
+            <td>{{i.crime_status}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.district}}</td>
+            <td><img src="{{i.image_pa.url}}" style="width: 100px;" alt=""></td>
+            <td><a href="update_crime/{{i.crime_id}}">update</a></td>
+            <td><a href="delete_crime/{{i.crime_id}}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

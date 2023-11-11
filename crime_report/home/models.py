@@ -14,6 +14,20 @@ class crime_types(models.Model):
     minimum_penalty = models.CharField(max_length=200)
 
 
+
+class stations(models.Model):
+    station_id = models.AutoField(primary_key=True)
+    login_id = models.CharField(max_length=200)
+    station_name = models.CharField(max_length=200)
+    place = models.CharField(max_length=200)
+    district = models.CharField(max_length=200)
+    pincode = models.CharField(max_length=200)
+    phone = models.CharField(max_length=200)
+    email = models.CharField(max_length=200)
+    fax_no = models.CharField(max_length=200)
+
+
+
 class crimes(models.Model):
     crime_id = models.AutoField(primary_key=True)
     crime_type_id = models.ForeignKey(crime_types, on_delete=models.CASCADE)
@@ -21,11 +35,11 @@ class crimes(models.Model):
     crime_description = models.CharField(max_length=200)
     date_time_occurred = models.CharField(max_length=200)
     date_time_reported = models.CharField(max_length=200)
-    station_id = models.CharField(max_length=200)
+    station_id = models.ForeignKey(stations,on_delete=models.CASCADE)
     crime_status = models.CharField(max_length=200)
     place = models.CharField(max_length=200)
     district = models.CharField(max_length=200)
-    image = models.CharField(max_length=200)
+    image_pa = models.ImageField(upload_to='static/uploads')
 
 
 class criminals(models.Model):
@@ -34,8 +48,8 @@ class criminals(models.Model):
     last_name = models.CharField(max_length=200)
     gender = models.CharField(max_length=200)
     dob = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='criminals')
-    thumb_impression = models.CharField(max_length=200)
+    photo_da = models.ImageField(upload_to='static/uploads')
+    thumb_impression = models.ImageField(upload_to='static/uploads')
     identification_mark_1 = models.CharField(max_length=200)
     identification_mark_2 = models.CharField(max_length=200)
     house_name = models.CharField(max_length=200)
@@ -55,17 +69,6 @@ class users(models.Model):
     phone = models.CharField(max_length=200)
     email = models.CharField(max_length=200)
 
-
-class stations(models.Model):
-    station_id = models.AutoField(primary_key=True)
-    login_id = models.CharField(max_length=200)
-    station_name = models.CharField(max_length=200)
-    place = models.CharField(max_length=200)
-    district = models.CharField(max_length=200)
-    pincode = models.CharField(max_length=200)
-    phone = models.CharField(max_length=200)
-    email = models.CharField(max_length=200)
-    fax_no = models.CharField(max_length=200)
 
 
 class complaints(models.Model):
@@ -132,7 +135,7 @@ class case_types(models.Model):
 
 class cases(models.Model):
     case_id = models.AutoField(primary_key=True)
-    client_id = models.CharField(max_length=200)
+    user_id = models.ForeignKey(users, on_delete=models.CASCADE)
     type_id = models.ForeignKey(case_types,on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
@@ -207,3 +210,4 @@ class ratings(models.Model):
     review = models.CharField(max_length=200)
     date_time = models.CharField(max_length=200)
 
+    

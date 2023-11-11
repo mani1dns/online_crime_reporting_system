@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Photo</th>
+            <th>Identification Mark 1</th>
+            <th>Identification Mark 2</th>
+            <th>House Name</th>
+            <th>Father Name</th>
+            <th>Place</th>
+            <th>District</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.first_name}}</td>
+            <td>{{i.last_name}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.dob}}</td>
+            <td>{{i.photo}}</td>
+            <td>{{i.identification_mark_1}}</td>
+            <td>{{i.identification_mark_2}}</td>
+            <td>{{i.house_name}}</td>
+            <td>{{i.father_name}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.district}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

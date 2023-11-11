@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%if ab %}
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th>First Name</th>
+                <td><input type="text" name="first" value="{{ab.first_name}}"></td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td><input type="text" name="last" value="{{ab.last_name}}"></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td><label><input type="radio" name="gender" value="Male">Male</label>
+                <input type="radio" name="gender" value="Female">Female
+                <input type="radio" name="gender" value="Other">Other
+                </td>
+            </tr>
+            <tr>
+                <th>DOB</th>
+                <td><input type="text" name="dob" value="dob"></td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><input type="file" name="photo" required value="photo_da"></td>
+            </tr>
+            <tr>
+                <th>Thumb Impression</th>
+                <td><input type="file" name="thumb" required value="thumb_impression"></td>
+            </tr>
+            <tr>
+                <th>Identification Mark 1</th>
+                <td><input type="text" name="id1" value="identification_mark_1"></td>
+            </tr>
+            <tr>
+                <th>Identification Mark 2</th>
+                <td><input type="text" name="id2" value="identification_mark_2"></td>
+            </tr>
+            <tr>
+                <th>House Name</th>
+                <td><input type="text" name="house" value="house_name"></td>
+            </tr>
+            <tr>
+                <th>Father Name</th>
+                <td><input type="text" name="father_name" value="father_name"></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place" value="place"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" name="district" value="district"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" name="update" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+    {%else%}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th>First Name</th>
+                <td><input type="text" name="first"></td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td><input type="text" name="last"></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td><label><input type="radio" name="gender" value="Male">Male</label>
+                <input type="radio" name="gender" value="Female">Female
+                <input type="radio" name="gender" value="Other">Other
+                </td>
+            </tr>
+            <tr>
+                <th>DOB</th>
+                <td><input type="text" name="dob"></td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td><input type="file" name="photo" required></td>
+            </tr>
+            <tr>
+                <th>Thumb Impression</th>
+                <td><input type="file" name="thumb" required></td>
+            </tr>
+            <tr>
+                <th>Identification Mark 1</th>
+                <td><input type="text" name="id1"></td>
+            </tr>
+            <tr>
+                <th>Identification Mark 2</th>
+                <td><input type="text" name="id2"></td>
+            </tr>
+            <tr>
+                <th>House Name</th>
+                <td><input type="text" name="house"></td>
+            </tr>
+            <tr>
+                <th>Father Name</th>
+                <td><input type="text" name="father_name"></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" name="district"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><input type="submit" name="submit"></td>
+            </tr>
+        </table>
+        {% endif %}
+    </form>   <br><br><br>
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Photo</th>
+            <th>Thumb Impression</th>
+            <th>Identification Mark 1</th>
+            <th>Identification Mark 2</th>
+            <th>House Name</th>
+            <th>Father Name</th>
+            <th>Place</th>
+            <th>District</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.first_name}}</td>
+            <td>{{i.last_name}}</td>
+            <td>{{i.gender}}</td>
+            <td>{{i.dob}}</td>
+            <td><img src="{{i.photo_da.url}}" style="width:100px;" alt="Image is not displayed now"></td>
+            <td><img src="{{i.thumb_impression.url}}" style="width: 100px;" alt="Thumb is not displayed now"></td>
+            <td>{{i.identification_mark_1}}</td>
+            <td>{{i.identification_mark_2}}</td>
+            <td>{{i.house_name}}</td>
+            <td>{{i.father_name}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.district}}</td>
+            <td><a href="update_criminal/{{i.criminal_id}}">Update</a></td>
+            <td><a href="delete_criminal/{{i.criminal_id}}">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+</body>
+</html>

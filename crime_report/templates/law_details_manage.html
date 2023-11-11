@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if cd %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <td><input type="text" name="title" value="{{cd.title}}"></td>
+            </tr>
+            <tr>
+                <th>IPC Code</th>
+                <td><input type="text" name="code" value="{{cd.ipc_code}}"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="des" value="{{cd.description}}"></td>
+            </tr>
+            <tr>
+                <th>Penalty</th>
+                <td><input type="text" name="penalties" value="{{cd.penalty}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="update"></td>
+            </tr>
+        </table>
+    </form>
+    {% else %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <th>IPC Code</th>
+                <td><input type="text" name="code"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="des"></td>
+            </tr>
+            <tr>
+                <th>Penalty</th>
+                <td><input type="text" name="penalties"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="submit"></td>
+            </tr>
+        </table>
+    {% endif %}
+    </form>
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>IPC Code</th>
+            <th>Description</th>
+            <th>Penalty</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.title}}</td>
+            <td>{{i.ipc_code}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.penalty}}</td>
+            <td><a href="update_law_detail_manage/{{i.law_id}}">Update</a></td>
+            <td><a href="delete_law_detail_manage/{{i.law_id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

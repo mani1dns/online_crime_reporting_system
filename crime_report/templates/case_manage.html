@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if bz %}
+    <form method="POST">
+        {% csrf_token %}
+        <table border="1">
+            <tr>
+                <th>Title</th>
+                <td><input type="text" name="title" value="title"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="description" value="description"></td>
+            </tr>
+            <tr>
+                <th>Case Date</th>
+                <td><input type="text" name="date" value="case_date"></td>
+            </tr>
+            <tr>
+                <th>Police Station</th>
+                <td><input type="text" name="police" value="police_station"></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" name="pincode" value="pincode"></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text" name="phone" value="phone"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><input type="text" name="status" value="status"></td>
+            </tr>
+            <tr>
+                <th>Case Name</th>
+                <td><select name="case">
+                    {% for i in data %}
+                    <option value="{{i.type_id}}">{{i.type_name}}</option>
+                    {% endfor %}
+                  </select></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="update"></td>
+            </tr>
+        </table>
+    </form>
+    {% else %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>Title</th>
+                <td><input type="text" name="title"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <th>Case Date</th>
+                <td><input type="text" name="date"></td>
+            </tr>
+            <tr>
+                <th>Police Station</th>
+                <td><input type="text" name="police"></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" name="pincode"></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td><input type="text" name="status"></td>
+            </tr>
+            <tr>
+                <th>Case Name</th>
+                <td><select name="case">
+                    {% for i in data %}
+                    <option value="{{i.type_id}}">{{i.type_name}}</option>
+                    {% endfor %}
+                  </select></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="submit"></td>
+            </tr>
+        </table>
+    </form>
+    {% endif %}
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Case Date</th>
+            <th>Police Station</th>
+            <th>Pincode</th>
+            <th>Phone</th>
+            <th>Status</th>
+        </tr>
+        {% for i in data.q %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.title}}</td>
+            <td>{{i.description}}</td>
+            <td>{{i.case_date}}</td>
+            <td>{{i.police_station}}</td>
+            <td>{{i.pincode}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.status}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

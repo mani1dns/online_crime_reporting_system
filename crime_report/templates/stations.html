@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%if cd%}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table border="2">
+            <tr>
+                <th>Station Name</th>
+                <td><input type="text" name="stationname" value="{{cd.station_name}}"></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place" value="{{cd.place}}"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" name="district" value="{{cd.district}}"></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" name="pin" value="{{cd.pincode}}"></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text" name="phone" value="{{cd.phone}}"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" name="email" value="{{cd.email}}"></td>
+            </tr>
+            <tr>
+                <th>Fax No</th>
+                <td><input type="text" name="fax" value="{{cd.fax_no}}"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td ><input type="submit" name="update" value="Update"></td>
+            </tr>
+        </table>
+    </form>
+    {% else %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table border="2">
+            <tr>
+                <th>Station Name</th>
+                <td><input type="text" name="stationname"></td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" name="district"></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" name="pin"></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td><input type="text" name="phone"></td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td><input type="text" name="email"></td>
+            </tr>
+            <tr>
+                <th>Fax No</th>
+                <td><input type="text" name="fax"></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td ><input type="submit" name="submit"></td>
+            </tr>
+        </table>
+    {%endif%}
+    </form>        <br><br><br>
+    <table border="2">
+        <tr>
+            <th>#</th>
+            <th>Station Name</th>
+            <th>Place</th>
+            <th>District</th>
+            <th>Pincode</th>
+            <th>Phone No</th>
+            <th>Email</th>
+            <th>Fax No</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for i in data %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.station_name}}</td>
+            <td>{{i.place}}</td>
+            <td>{{i.district}}</td>
+            <td>{{i.pincode}}</td>
+            <td>{{i.phone}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.fax_no}}</td>
+            <td><a href="update_stations/{{i.station_id}}">Update</a></td>
+            <td><a href="delete_stations/{{i.station_id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="POST">
+        {%csrf_token%}
+        <table border="1">
+            <tr>
+                <th>Place</th>
+                <td><input type="text" name="place"></td>
+            </tr>
+            <tr>
+                <th>Date and Time</th>
+                <td><input type="text" name="date"></td>
+            </tr>
+            <tr>
+                <th>Criminal Details</th>
+                <td><input type="text" name="description"></td>
+            </tr>
+            <tr>
+                <th>Choose Criminal : </th>
+                <td><select name="criminal" id="">
+                    {%for i in q1%}
+                    <option value="{{i.criminal_id}}">{{i.first_name}}</option>
+                    {%endfor%}
+                </select></td>
+            </tr>
+            <tr>
+                <th><input type="submit" name="submit"></th>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
